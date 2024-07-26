@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Todo App</title>
+</head>
+
+<body>
+  <h1>Todo List</h1>
+  <form action="/todos" method="POST">
+    <input type="text" name="title" placeholder="Title" required>
+    <textarea name="description" placeholder="Description"></textarea>
+    <button type="submit">Add Todo</button>
+  </form>
+  <ul>
+    <% todos.forEach(todo=> { %>
+      <li>
+        <strong>
+          <%= todo.title %>
+        </strong>: <%= todo.description %> -
+          <%= todo.completed ? 'Completed' : 'Not Completed' %> -
+            <!-- Add links for edit and delete -->
+      </li>
+      <% }); %>
+  </ul>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    <%= title %>
+  </title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .book-list {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  .book-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+  }
+
+  .book-item>div {
+    margin-right: 20px;
+  }
+
+  .book-item h2 {
+    margin: 0;
+    font-size: 1.2em;
+  }
+
+  .book-item p {
+    margin: 0;
+  }
+
+  .book-item .tags {
+    display: flex;
+    gap: 5px;
+  }
+
+  .book-item .tags span {
+    background-color: #eee;
+    padding: 2px 5px;
+    border-radius: 3px;
+  }
+</style>
+
+<body>
+  <h1>
+    <%= title %>
+  </h1>
+  <p>Welcome to <%= title %>
+  </p>
+  <a href="/book/create">创建书籍</a>
+  <ul class="book-list">
+    <% books.forEach(function(book) { %>
+      <li class="book-item">
+        <h2>
+          <%= book.name %>
+        </h2>
+        <p><strong>作者:</strong>
+          <%= book.author %>
+        </p>
+        <p><strong>价格:</strong> $<%= book.price %>
+        </p>
+        <p><strong>热门:</strong>
+          <%= book.is_hot ? '是' : '否' %>
+        </p>
+        <p><strong>标签:</strong>
+          <%= book.tags.join(', ') %></p>
+            <p><strong>发售时间:</strong> <%= book.pub_time %></p>
+            <form action="/book/deleteBook/<%= book._id %>" method="post">
+              <button>删除书籍</button>
+            </form>
+          </li>
+        
+        <% }); %>
+      </ul>
+  </body>
+</html>
